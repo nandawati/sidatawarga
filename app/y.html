@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JUMLAH DATA WARGA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #dashboard-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 20px;
+    }
+
+    .widget {
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 10px;
+      flex: 1;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Data Warga</h1>
+  </header>
+
+  <div id="dashboard-container">
+    <div class="widget">
+      <h2>Jumlah Seluruh Warga</h2>
+    <?php 
+    include "boot.php";
+    include "koneksi.php";
+
+    // Query untuk menghitung Jumlah Seluruh Warga
+
+    $query = $konek->query("SELECT COUNT(*) as Jumlah Seluruh Warga FROM data_warga");
+    $row = $query->fetch_assoc();
+    $Jumlah_Seluruh_Warga = $row['Jumlah Seluruh Warga'];
+    ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <body>
+  <section>
+  <p>Jumlah Seluruh Penduduk Laki-Laki:<?php echo $Jumlah_Seluruh_Warga ; ?></p>
+  </section>
+  </body>
+  </html>
+  <a href="Laki-Laki.php"class="info-buton"onclick="toggleMoreInfo()">More info</a>
+  </div>
+
+  <div class="widget">
+
+  <h2>Data Perempuan</h2>
+  <?php
+  $query = $konek->query("SELECT COUNT (*) as Data_Perempuan FROM data_warga WHERE jenis_kelamin = 'Data_Perempuan'");
+  $row = $query->fetch_assoc();
+  $Data_Perempuan = $row['Data_Perempuan'];
+  ?>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Data Perempuan</title>
+  </head>
+  <body>
+  <section>
+  <p>Data Perempuan:<?php echo $Data_Perempuan; ?></p>
+  </section>
+  </body>
+  </html>
+  <a href="Perempuan.php"class="info-buton"onclick="toggleMoreinfo()">More info</a>
+  </div>
+
+  <script>
+    // Tambahkan skrip JavaScript untuk interaksi lebih lanjut jika diperlukan
+  </script>
+</body>
+</html>
